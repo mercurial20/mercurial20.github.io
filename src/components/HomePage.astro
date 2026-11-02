@@ -1,0 +1,161 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import { IMG } from '../images';
+import { EDITOR, GITHUB, ROUTES, SITE, UI, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const ui = UI[lang];
+const en = lang === 'en';
+
+const T = en
+  ? {
+      title: 'Loremapper — Free Fantasy Map Generator & World Map Maker',
+      description: 'Loremapper is a free, open-source fantasy map generator and editor in your browser: generate continents, sculpt real terrain, draw rivers, kingdoms and roads, add fog of war for D&D. No account.',
+      h1: 'Free fantasy map generator and editor',
+      lead: 'Loremapper is a free, open-source fantasy map maker that runs in your browser. Generate a continent or a whole planet in seconds, then shape it by hand: mountains with real heights, rivers that flow downhill, forests, kingdoms, cities and your own artwork.',
+      more: 'How the generator works',
+      whyH: 'Why Loremapper',
+      features: [
+        { img: IMG.generate, h: 'A world that makes sense', p: 'Ranges rise where plates collide, rivers drain real basins to the sea, deserts lie in the rain shadow of mountains. Every map is generated at its true scale, up to 10,000 km.' },
+        { img: IMG.elevation, h: 'Terrain in metres', p: 'Every point has an elevation. Sculpt with brushes, see contour lines and shaded relief, and let peaks label their own heights.' },
+        { img: IMG.territory, h: 'Kingdoms, rivers, roads', p: 'Draw borders, rivers that taper to their source and roads of any style. Names follow what they name and hide when too small to read.' },
+        { img: IMG.fog, h: 'Fog of war for game masters', p: 'Paint fog over unexplored lands and export a player-safe map for your D&D or Pathfinder campaign.' },
+        { img: IMG.assets, h: 'Your own art', p: '57 illustrated icons for castles, cities and monsters, plus your own PNG, WebP or SVG files in the same library.' },
+        { img: IMG.styles, h: 'Eight map styles', p: 'Parchment, fantasy atlas, antique engraving, shaded relief, strategy game, pixel art and more. Export images up to 12,288 px, heightmaps for game engines, or an editable project file.' },
+      ],
+      stepsH: 'From nothing to a map in three steps',
+      steps: [
+        'Open the editor and choose a planet or a flat map: a region of 250 km or a continent of 10,000 km.',
+        'Generate a world from a seed, or start from an empty ocean and raise land with a brush.',
+        'Name places, draw borders and roads, place cities, then export a picture or keep editing.',
+      ],
+      faqH: 'Questions',
+      faq: [
+        ['Is Loremapper free?', 'Yes. It is a non-commercial, open-source project under the MIT License: no paid version, no premium features, no ads.'],
+        ['Do I need an account?', 'No. Open the editor and start. Maps are saved automatically in your browser and never uploaded anywhere.'],
+        ['What can I export?', 'PNG images up to 12,288 px (with or without fog of war), 16-bit heightmaps for game engines and 3D tools, and project files to back up or move your maps.'],
+        ['How is it different from Inkarnate or Azgaar?', 'Inkarnate is a painting tool for hand-drawn maps; Azgaar generates whole worlds with cultures and states. Loremapper focuses on believable terrain at true scale — real elevation, rivers that flow downhill, climate — and lets you edit all of it by hand.'],
+        ['Does it work on a phone?', 'You can view maps on phones and tablets. Editing is made for a computer with a mouse.'],
+      ],
+      bandH: 'Make your first map now',
+      bandP: 'Free, in the browser, nothing to install.',
+    }
+  : {
+      title: 'Loremapper — бесплатный генератор фэнтези-карт и карт мира',
+      description: 'Loremapper — бесплатный генератор и редактор фэнтези-карт в браузере с открытым кодом: материки за секунды, настоящий рельеф, реки, королевства и дороги, туман войны для D&D. Без регистрации.',
+      h1: 'Бесплатный генератор и редактор фэнтези-карт',
+      lead: 'Loremapper — бесплатный редактор фэнтези-карт с открытым кодом, который работает прямо в браузере. Создайте материк или целую планету за секунды, а потом доработайте её руками: горы настоящей высоты, реки, текущие под уклон, леса, королевства, города и ваши собственные рисунки.',
+      more: 'Как работает генератор',
+      whyH: 'Почему Loremapper',
+      features: [
+        { img: IMG.generate, h: 'Мир, в который веришь', p: 'Хребты поднимаются там, где сталкиваются плиты, реки собирают воду с настоящих бассейнов, пустыни лежат в дождевой тени гор. Каждая карта строится в настоящем масштабе — до 10 000 км.' },
+        { img: IMG.elevation, h: 'Рельеф в метрах', p: 'У каждой точки есть высота. Лепите кистями, смотрите горизонтали и отмывку рельефа, вершины сами подписывают свою высоту.' },
+        { img: IMG.territory, h: 'Королевства, реки, дороги', p: 'Рисуйте границы, реки, сужающиеся к истоку, и дороги любого вида. Названия следуют за тем, что называют, и прячутся, когда их не прочесть.' },
+        { img: IMG.fog, h: 'Туман войны для мастера', p: 'Закрасьте туманом неразведанные земли и выгрузите карту для игроков — для кампании по D&D, Pathfinder или любой другой НРИ.' },
+        { img: IMG.assets, h: 'Свои рисунки', p: '57 иллюстрированных значков — замки, города, чудовища — и ваши PNG, WebP или SVG в той же библиотеке.' },
+        { img: IMG.styles, h: 'Восемь стилей карты', p: 'Пергамент, фэнтези-атлас, старинная гравюра, отмывка рельефа, стратегия, пиксель-арт и другие. Картинки до 12 288 px, карты высот для игровых движков или файл проекта для дальнейшей правки.' },
+      ],
+      stepsH: 'От пустого листа до карты за три шага',
+      steps: [
+        'Откройте редактор и выберите планету или плоскую карту: область на 250 км или материк на 10 000 км.',
+        'Сгенерируйте мир по сиду или начните с пустого океана и поднимите сушу кистью.',
+        'Подпишите места, нарисуйте границы и дороги, поставьте города — и выгрузите картинку или продолжайте работу.',
+      ],
+      faqH: 'Вопросы',
+      faq: [
+        ['Loremapper бесплатный?', 'Да. Это некоммерческий проект с открытым кодом под лицензией MIT: нет платной версии, премиум-функций и рекламы.'],
+        ['Нужна ли регистрация?', 'Нет. Откройте редактор и начинайте. Карты сохраняются автоматически в вашем браузере и никуда не загружаются.'],
+        ['Что можно выгрузить?', 'Картинки PNG до 12 288 px (с туманом войны или без), 16-битные карты высот для игровых движков и 3D-программ и файлы проекта для резервной копии или переноса.'],
+        ['Чем он отличается от Inkarnate или Azgaar?', 'Inkarnate — инструмент для рисования карт вручную; Azgaar генерирует целые миры с культурами и государствами. Loremapper делает упор на правдоподобный рельеф в настоящем масштабе — высоты, реки под уклон, климат — и позволяет всё это править руками.'],
+        ['Работает ли на телефоне?', 'Смотреть карты можно на телефоне и планшете. Редактировать удобнее на компьютере с мышью.'],
+      ],
+      bandH: 'Сделайте первую карту прямо сейчас',
+      bandP: 'Бесплатно, в браузере, ничего не нужно устанавливать.',
+    };
+
+const schema = [
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Loremapper', alternateName: ['Lore Mapper', 'Loremapper fantasy map generator'], url: SITE + '/', inLanguage: ['en', 'ru'] },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'Loremapper',
+    url: EDITOR,
+    description: T.description,
+    applicationCategory: 'DesignApplication',
+    operatingSystem: 'Any desktop operating system with a modern web browser',
+    browserRequirements: 'Requires JavaScript and WebGL 2',
+    inLanguage: ['en', 'ru'],
+    isAccessibleForFree: true,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    license: GITHUB + '/blob/main/LICENSE',
+    sameAs: [GITHUB, 'https://www.reddit.com/r/LoreMapper/'],
+    image: SITE + '/social-preview.jpg',
+  },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: T.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+];
+---
+
+<Base lang={lang} page="home" title={T.title} description={T.description} schema={schema}>
+  <section class="hero">
+    <div>
+      <h1>{T.h1}</h1>
+      <p class="lead">{T.lead}</p>
+      <div class="cta">
+        <a class="btn primary big" href={EDITOR}>{ui.open}</a>
+        <a class="btn big" href={ROUTES.generator[lang]}>{T.more}</a>
+      </div>
+      <p class="badges">{ui.free}</p>
+    </div>
+    <figure>
+      <Image class="shot" src={IMG.hero} alt={en ? 'A fantasy kingdom made in Loremapper: mountains, forests, rivers, castles and a dashed border' : 'Фэнтези-королевство, сделанное в Loremapper: горы, леса, реки, замки и пунктирная граница'} width={1200} widths={[640, 1200]} sizes="(max-width: 860px) 100vw, 600px" loading="eager" />
+    </figure>
+  </section>
+
+  <h2>{T.whyH}</h2>
+  <div class="grid">
+    {
+      T.features.map((f) => (
+        <article class="card">
+          <Image src={f.img} alt={f.h} width={720} widths={[420, 720]} sizes="(max-width: 860px) 100vw, 360px" />
+          <div>
+            <h3>{f.h}</h3>
+            <p>{f.p}</p>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <h2>{T.stepsH}</h2>
+  <div class="hero" style="padding-top: 0">
+    <ol class="steps">
+      {T.steps.map((s) => <li>{s}</li>)}
+    </ol>
+    <figure>
+      <img class="shot" src={IMG.sculpting.src} width={IMG.sculpting.width} height={IMG.sculpting.height} loading="lazy" alt={en ? 'Raising an island from the ocean, building a mountain range, painting a forest and drawing a river in Loremapper' : 'Остров поднимается из океана, появляется хребет, лес и река — работа в Loremapper'} />
+      <figcaption>{en ? 'About 30 seconds of real editing.' : 'Около 30 секунд настоящей работы.'}</figcaption>
+    </figure>
+  </div>
+
+  <h2>{T.faqH}</h2>
+  {
+    T.faq.map(([q, a]) => (
+      <details>
+        <summary>{q}</summary>
+        <p>{a}</p>
+      </details>
+    ))
+  }
+
+  <section class="band">
+    <div>
+      <h2>{T.bandH}</h2>
+      <p>{T.bandP}</p>
+    </div>
+    <a class="btn primary big" href={EDITOR}>{ui.open}</a>
+  </section>
+</Base>

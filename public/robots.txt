@@ -1,0 +1,19 @@
+# Loremapper: the website at the root, the map editor at /loremapper/.
+# Maps and assets live in each visitor's browser and are never served from here.
+User-agent: *
+Allow: /
+
+# Search and AI assistants are welcome to read and cite these pages.
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: GPTBot
+User-agent: PerplexityBot
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Google-Extended
+User-agent: Applebot
+Allow: /
+
+Sitemap: https://mercurial20.github.io/sitemap-index.xml

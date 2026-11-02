@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import Article from '../layouts/Article.astro';
+import { IMG } from '../images';
+import { ROUTES } from '../i18n';
+---
+
+<Article
+  lang="en"
+  page="dnd"
+  title="D&D Map Maker with Fog of War — Free World Maps for Your Campaign | Loremapper"
+  description="Make world and region maps for D&D, Pathfinder or any tabletop RPG for free: generate a continent, add kingdoms, cities and roads, hide unexplored lands under fog of war and export a player map."
+  h1="A free map maker for D&D campaigns"
+  crumb="For D&D"
+>
+  <p class="lead">
+    Loremapper is a free map maker for game masters. Generate the continent your campaign happens on, add kingdoms, cities, roads and dungeons,
+    hide what the party has not explored under fog of war, and hand your players a map that shows only what their characters know.
+  </p>
+  <figure>
+    <Image class="shot" src={IMG.fog} alt="A fantasy map in Loremapper with fog of war covering unexplored regions" width={1200} widths={[760, 1200]} sizes="(max-width: 860px) 100vw, 760px" />
+    <figcaption>Fog of war: the GM sees through it, the exported player map does not.</figcaption>
+  </figure>
+
+  <h2>What game masters use</h2>
+  <table class="facts">
+    <tbody>
+      <tr><th>Fog of war</th><td>Paint fog over unexplored lands and reveal it as the party travels. A see-through preview keeps it out of your way while you edit.</td></tr>
+      <tr><th>Player map</th><td>Export the complete map for yourself and a "revealed areas only" version for the players.</td></tr>
+      <tr><th>Kingdoms and borders</th><td>Draw realms with coloured, dashed or solid borders, named on the map.</td></tr>
+      <tr><th>Cities, castles, monsters</th><td>57 illustrated icons, or your own tokens and artwork in PNG, WebP or SVG.</td></tr>
+      <tr><th>Distances</th><td>The map has a real scale: the measure tool tells how far it is to the next town, so travel times in your story add up.</td></tr>
+      <tr><th>Names</th><td>Town, river and region names in groups you style together; small names hide when zoomed out.</td></tr>
+      <tr><th>Print and screen</th><td>PNG images up to 12,288 px wide for printing, a virtual tabletop or a campaign wiki.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Making a campaign map, step by step</h2>
+  <ol class="steps">
+    <li>Create a flat map the size of your setting — a 500 km kingdom or a 3,000 km continent — and generate the land, or raise it by hand.</li>
+    <li>Draw the realms the story needs and name them. Place the capital, the towns and the places of adventure.</li>
+    <li>Connect them with roads; measure the distances so travel times feel right.</li>
+    <li>Cover everything the party has not seen with fog of war.</li>
+    <li>Export two pictures: the complete map for you, the revealed one for the players. Reveal more as the campaign goes on.</li>
+  </ol>
+
+  <figure>
+    <Image class="shot" src={IMG.territory} alt="Kingdom borders and names drawn on a fantasy map in Loremapper" width={1200} widths={[760, 1200]} sizes="(max-width: 860px) 100vw, 760px" />
+    <figcaption>Realms with their borders and names.</figcaption>
+  </figure>
+
+  <h2>Free, and your maps stay yours</h2>
+  <p>
+    There is no account and no subscription. Maps are saved in your browser, and a project file keeps a full backup you can move to another computer.
+    New to map making? Read <a href={ROUTES.guide.en}>how to make a fantasy map</a>, or learn about the <a href={ROUTES.generator.en}>world generator</a>.
+  </p>
+</Article>

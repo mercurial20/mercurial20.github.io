@@ -1,0 +1,79 @@
+---
+import { Image } from 'astro:assets';
+import Article from '../layouts/Article.astro';
+import { IMG } from '../images';
+import { EDITOR, ROUTES } from '../i18n';
+---
+
+<Article
+  lang="en"
+  page="guide"
+  title="How to Make a Fantasy Map: 7 Steps to a Believable World | Loremapper"
+  description="A practical guide to making a fantasy map that feels real: scale, coastlines, mountains, rivers, climate, settlements and names — with a free tool to do each step."
+  h1="How to make a fantasy map"
+  crumb="How to make a fantasy map"
+  article={{ published: '2026-11-02', modified: '2026-11-02' }}
+>
+  <p class="lead">
+    A good fantasy map feels like a real place: rivers find the sea, deserts sit where the rain cannot reach, and cities grow where people would
+    actually settle. These seven steps work with paper and pencil too, but each one comes with how to do it in <a href={EDITOR}>Loremapper</a>, a
+    free map editor that keeps the geography honest for you.
+  </p>
+
+  <h2>1. Decide the scale</h2>
+  <p>
+    How large is the world? A kingdom is a few hundred kilometres across, a continent a few thousand. Scale decides everything else: how many
+    rivers, how wide the mountain ranges are (real ones are 100–200 km), how long the journey between towns takes. In Loremapper you choose a flat
+    map from 250 to 10,000 km, or a whole planet.
+  </p>
+
+  <h2>2. Shape the land and the coast</h2>
+  <p>
+    Coastlines are irregular at every scale: bays inside bays, capes, islands off the shore. Avoid smooth blobs and perfectly round islands. Generate
+    a shape and refine it, or raise land from the ocean with the brush.
+  </p>
+  <figure>
+    <img class="shot" src={IMG.sculpting.src} width={IMG.sculpting.width} height={IMG.sculpting.height} loading="lazy" alt="Raising an island, building a mountain range, painting a forest and drawing a river in Loremapper" />
+  </figure>
+
+  <h2>3. Place the mountains first</h2>
+  <p>
+    Mountains come in long ranges, not scattered dots, and they shape everything after them. Ranges rise where landmasses collide, often along a
+    coast or across a continent. Put them in before rivers: water starts in the mountains.
+  </p>
+
+  <h2>4. Let rivers run downhill</h2>
+  <p>
+    The most common mistake on fantasy maps is rivers that split on the way to the sea or connect two oceans. Real rivers start in the high ground,
+    merge as they flow, and almost never fork except in deltas. Each river runs in its own valley; a lake drains through one river. Loremapper
+    computes this from the terrain, so its rivers always flow downhill.
+  </p>
+
+  <h2>5. Think about wind and climate</h2>
+  <p>
+    Moist wind from the sea drops its rain on the slopes facing it, so the land behind a mountain range is dry — a rain shadow. Forests on the
+    windward side, steppe and desert behind; cold near the poles and high up. In Loremapper's generator you set the prevailing wind for flat maps and
+    the biomes follow.
+  </p>
+  <figure>
+    <Image class="shot" src={IMG.world} alt="A generated world in Loremapper with forests, deserts and snow placed by climate" width={1200} widths={[760, 1200]} sizes="(max-width: 860px) 100vw, 760px" loading="lazy" />
+  </figure>
+
+  <h2>6. Settle it where people would</h2>
+  <p>
+    Towns grow on rivers, at river mouths, on natural harbours and fertile plains; castles guard passes and hills. Roads follow valleys and coasts
+    rather than straight lines over mountains. Borders often follow rivers and ridges.
+  </p>
+
+  <h2>7. Name it, then let it breathe</h2>
+  <p>
+    Name regions large, towns smaller, rivers along their course. Keep names in a consistent style per culture. Do not label everything: a map
+    with a few strong names reads better than a crowded one. In Loremapper, names are styled in groups and hide when too small to read.
+  </p>
+
+  <h2>Start now</h2>
+  <p>
+    Open the <a href={EDITOR}>editor</a>, or read more about the <a href={ROUTES.generator.en}>fantasy map generator</a> and
+    <a href={ROUTES.dnd.en}>maps for D&amp;D campaigns</a>.
+  </p>
+</Article>

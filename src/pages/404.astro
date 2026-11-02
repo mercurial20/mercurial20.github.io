@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import { EDITOR } from '../i18n';
+---
+
+<Base lang="en" page="home" title="Page not found | Loremapper" description="This page does not exist. Open the Loremapper fantasy map editor or go to the home page.">
+  <section class="hero" style="grid-template-columns: 1fr">
+    <div>
+      <h1>Page not found</h1>
+      <p class="lead">This page does not exist (anymore). The map editor is one click away.</p>
+      <div class="cta">
+        <a class="btn primary big" href={EDITOR}>Open the editor</a>
+        <a class="btn big" href="/">Home</a>
+      </div>
+    </div>
+  </section>
+</Base>
