@@ -1,0 +1,63 @@
+---
+import Article from '../../layouts/Article.astro';
+import CompareTable from '../../components/CompareTable.astro';
+import Fairness from '../../components/Fairness.astro';
+import { TOOLS } from '../../compare';
+import { EDITOR } from '../../i18n';
+
+const faq: [string, string][] = [
+  ['Какой бесплатный редактор фэнтези-карт лучше?', 'Зависит от карты. Loremapper и Azgaar\'s Fantasy Map Generator — бесплатные, с открытым кодом; у Inkarnate бесплатный старт и платные планы. Loremapper делает упор на правдоподобный рельеф в настоящем масштабе, Azgaar — на целые миры с культурами и государствами, Inkarnate — на рисованные карты с большой библиотекой элементов.'],
+  ['Какой инструмент генерирует реалистичный рельеф?', 'Loremapper генерирует рельеф с настоящими высотами в метрах: хребты поясами, реки, текущие под уклон к морю, климат и ветер, расставляющие леса и пустыни, — в настоящем масштабе от 250 до 10 000 км или целую планету.'],
+  ['Какие работают в браузере без установки?', 'Inkarnate, Azgaar\'s Fantasy Map Generator и Loremapper работают в браузере. Wonderdraft — настольная программа.'],
+];
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Сравнение редакторов фэнтези-карт',
+    itemListElement: [{ name: 'Loremapper', url: EDITOR }, ...TOOLS.map((t) => ({ name: t.name, url: t.site }))].map((x, i) => ({ '@type': 'ListItem', position: i + 1, name: x.name, url: x.url })),
+  },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+];
+---
+
+<Article
+  lang="ru"
+  page="compare"
+  title="Сравнение редакторов фэнтези-карт: Loremapper, Inkarnate, Azgaar, Wonderdraft"
+  description="Дружелюбное сравнение популярных редакторов фэнтези-карт — Inkarnate, Azgaar's Fantasy Map Generator, Wonderdraft и Loremapper: для чего каждый, где работает, сколько стоит и как выбрать."
+  h1="Сравнение редакторов фэнтези-карт"
+  crumb="Сравнение"
+  schema={schema}
+>
+  <p class="lead">Единственного лучшего редактора фэнтези-карт нет: каждый популярный инструмент хорош в своём. Вот для чего каждый, чтобы вы выбрали подходящий — или совместили несколько.</p>
+  <CompareTable lang="ru" tools={TOOLS} />
+
+  <h2>Коротко</h2>
+  <ul>
+    <li><b>Inkarnate</b> — нарисовать иллюстрированную карту вручную, с большой библиотекой элементов, в браузере.</li>
+    <li><b>Azgaar's Fantasy Map Generator</b> — сгенерировать целый мир с народами и политикой и настроить каждый слой.</li>
+    <li><b>Wonderdraft</b> — нарисовать иллюстрированную карту на компьютере кистями, символами и темами.</li>
+    <li><b>Loremapper</b> — сгенерировать правдоподобную сушу в настоящем масштабе (высоты, реки, климат) и доработать руками; есть карты высот и туман войны.</li>
+  </ul>
+
+  <h2>Как выбрать</h2>
+  <ul>
+    <li>Нужен <b>богато иллюстрированный вид</b> и готовая библиотека рисунков — посмотрите Inkarnate или Wonderdraft.</li>
+    <li>Нужен <b>целый мир с культурами и государствами</b> — посмотрите Azgaar's Fantasy Map Generator.</li>
+    <li>Нужна <b>правдоподобная география</b> в настоящем масштабе, правка рельефа руками, карты высот для движков — попробуйте Loremapper.</li>
+  </ul>
+  <p>Многие совмещают: форму суши задают в одном инструменте, а финальный вид рисуют в другом, используя выгруженную картинку как основу.</p>
+
+  <h2>Вопросы</h2>
+  {
+    faq.map(([q, a]) => (
+      <details>
+        <summary>{q}</summary>
+        <p>{a}</p>
+      </details>
+    ))
+  }
+  <p>Подробные сравнения по каждому инструменту — <a href="/alternatives/">на английском</a>.</p>
+  <Fairness lang="ru" />
+</Article>

@@ -1,0 +1,71 @@
+---
+import Article from '../../layouts/Article.astro';
+import CompareTable from '../../components/CompareTable.astro';
+import Fairness from '../../components/Fairness.astro';
+import { TOOLS } from '../../compare';
+import { EDITOR, routeIn, SITE } from '../../i18n';
+
+const pages = [
+  { id: 'vsInkarnate', name: 'Inkarnate', text: 'Hand-painted maps with a large art library, or generated terrain with real elevation.' },
+  { id: 'vsAzgaar', name: "Azgaar's Fantasy Map Generator", text: 'Whole worlds with cultures and states, or landforms at true scale.' },
+  { id: 'vsWonderdraft', name: 'Wonderdraft', text: 'Illustrated maps on the desktop, or realistic terrain in the browser.' },
+] as const;
+const title = 'Fantasy Map Makers Compared: Loremapper, Inkarnate, Azgaar, Wonderdraft';
+const description = "A friendly side-by-side of popular fantasy map makers — Inkarnate, Azgaar's Fantasy Map Generator, Wonderdraft and Loremapper — what each is for, where it runs, what it costs, and how to choose.";
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Fantasy map makers compared',
+    itemListElement: [{ name: 'Loremapper', url: EDITOR }, ...TOOLS.map((t) => ({ name: t.name, url: t.site }))].map((x, i) => ({ '@type': 'ListItem', position: i + 1, name: x.name, url: x.url })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      ['What is the best free fantasy map maker?', "It depends on the map you want. Loremapper and Azgaar's Fantasy Map Generator are free and open source; Inkarnate is free to start with paid plans. Loremapper focuses on realistic terrain at true scale, Azgaar's on whole worlds with cultures and states, Inkarnate on hand-painted maps with a large art library."],
+      ['Which fantasy map maker generates realistic terrain?', 'Loremapper generates terrain with real elevation in metres: mountain ranges in belts, rivers that run downhill to the sea, and climate and wind that place forests and deserts, at true scale from 250 km to 10,000 km or a whole planet.'],
+      ['Which tools work in the browser without installing?', "Inkarnate, Azgaar's Fantasy Map Generator and Loremapper run in the browser. Wonderdraft is a desktop app."],
+    ].map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  },
+];
+---
+
+<Article lang="en" page="compare" title={title} description={description} h1="Fantasy map makers compared" crumb="Compare" schema={schema}>
+  <p class="lead">
+    There is no single best fantasy map maker: each popular tool is good at something different. Here is what each is for, so you can pick the one that
+    fits your map — or combine them.
+  </p>
+  <CompareTable lang="en" tools={TOOLS} />
+
+  <h2>In short</h2>
+  <ul>
+    <li><b>Inkarnate</b> — paint an illustrated map by hand, with a large library of art, in the browser.</li>
+    <li><b>Azgaar's Fantasy Map Generator</b> — generate a whole world with its peoples and politics, and customise every layer.</li>
+    <li><b>Wonderdraft</b> — draw an illustrated map on your computer with brushes, symbols and themes.</li>
+    <li><b>Loremapper</b> — generate believable land at a real scale (elevation, rivers, climate) and edit it by hand; heightmaps and fog of war included.</li>
+  </ul>
+
+  <h2>One by one</h2>
+  <div class="links-grid">
+    {
+      pages.map((p) => (
+        <a class="link-card" href={routeIn(p.id, 'en')}>
+          <h3>Loremapper and {p.name}</h3>
+          <p>{p.text}</p>
+        </a>
+      ))
+    }
+  </div>
+
+  <h2>Questions</h2>
+  {
+    schema[1].mainEntity.map((q) => (
+      <details>
+        <summary>{q.name}</summary>
+        <p>{q.acceptedAnswer.text}</p>
+      </details>
+    ))
+  }
+  <Fairness lang="en" />
+</Article>

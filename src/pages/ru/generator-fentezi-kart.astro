@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Article from '../../layouts/Article.astro';
 import { IMG } from '../../images';
-import { ROUTES } from '../../i18n';
+import { ROUTES, routeIn } from '../../i18n';
 ---
 
 <Article
@@ -58,7 +58,7 @@ import { ROUTES } from '../../i18n';
   <h2>Потом — сделайте мир своим</h2>
   <p>
     Сгенерированный мир — только начало. Поднимайте и опускайте сушу кистями, меняйте хребты, рисуйте реки и дороги, раскрашивайте биомы, проводите
-    границы королевств и подписывайте места. Читайте <a href={ROUTES.guide.ru}>как сделать фэнтези-карту</a> по шагам или
-    <a href={ROUTES.dnd.ru}>как мастера используют её в D&amp;D</a>.
+    границы королевств и подписывайте места. Читайте <a href={routeIn('guide', 'ru')}>как сделать фэнтези-карту</a> по шагам или
+    <a href={routeIn('dnd', 'ru')}>как мастера используют её в D&amp;D</a>.
   </p>
 </Article>

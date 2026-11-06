@@ -317,3 +317,100 @@ details p {
     margin-left: auto;
   }
 }
+
+/* ------------------------------------------------------------ comparisons and guides */
+
+.table-wrap {
+  overflow-x: auto;
+  margin: 18px 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.compare {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 14.5px;
+}
+.compare th,
+.compare td {
+  text-align: left;
+  vertical-align: top;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.compare thead th {
+  background: var(--panel-2);
+  color: #f4ead2;
+  font-weight: 600;
+}
+.compare tbody th {
+  color: var(--muted);
+  font-weight: 500;
+  width: 18%;
+}
+.compare td:nth-child(2) {
+  background: rgba(230, 169, 79, 0.06);
+}
+.compare tr:last-child th,
+.compare tr:last-child td {
+  border-bottom: 0;
+}
+.fair {
+  margin-top: 36px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--muted);
+  font-size: 14px;
+}
+.fair p {
+  margin: 0;
+  color: var(--muted);
+}
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+.link-card {
+  display: block;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  text-decoration: none;
+}
+.link-card:hover {
+  border-color: rgba(230, 169, 79, 0.5);
+}
+.link-card h3 {
+  margin: 0 0 6px;
+}
+.link-card p {
+  margin: 0;
+  color: #cfc8b8;
+  font-size: 14.5px;
+}
+.pick {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.pick > div {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+}
+.pick h3 {
+  margin-top: 0;
+}
+@media (max-width: 860px) {
+  .pick {
+    grid-template-columns: 1fr;
+  }
+}

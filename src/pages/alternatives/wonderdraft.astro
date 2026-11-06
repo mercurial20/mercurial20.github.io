@@ -1,0 +1,30 @@
+---
+import VsPage from '../../components/VsPage.astro';
+---
+
+<VsPage
+  page="vsWonderdraft"
+  id="wonderdraft"
+  title="Loremapper vs Wonderdraft: Desktop Illustration or Browser Generation"
+  description="A friendly comparison of Loremapper and Wonderdraft: a desktop app for illustrated fantasy maps versus a free browser tool that generates realistic terrain. Which suits your project."
+  lead="Wonderdraft and Loremapper both make world and regional fantasy maps. Wonderdraft is a desktop app for drawing beautiful illustrated maps; Loremapper is a free browser tool that generates believable terrain and lets you edit it."
+  strengths={[
+    'Made for illustrated maps: landmasses with beautified coastlines, painted groups of trees and mountains, artistic rivers and roads.',
+    'Styled labels and curated map themes for a finished look.',
+    'A desktop app bought once, with pen and tablet support (see their site for systems and details).',
+  ]}
+  differs={[
+    'Runs in the browser with nothing to install, or on your own computer; free and open source (MIT).',
+    'Terrain has real elevation in metres; the generator forms mountain ranges, river networks and climate at true scale.',
+    'Exports 16-bit heightmaps besides images and project files, and has fog of war for player maps.',
+    'Its look comes from map styles over the terrain rather than painted symbols; you can add your own art as icons.',
+  ]}
+  pickThem="you want to draw a richly illustrated map on your computer, with a pen or tablet, painted symbols and curated themes."
+  pickUs="you want realistic land generated in seconds and editable in the browser, with elevation, heightmaps and fog of war, for free."
+  together="You can generate and refine a landmass in Loremapper and use the exported image as a reference for an illustrated map drawn in the tool you like."
+  faq={[
+    ['Is Loremapper a free alternative to Wonderdraft?', 'Loremapper is free and runs in the browser, but it works differently: it generates realistic terrain with elevation, while Wonderdraft is a desktop tool for drawing illustrated maps.'],
+    ['Can I run Loremapper on my own computer?', 'Yes. Besides the online version, you can run your own copy with Docker or Node.js; see the project on GitHub.'],
+    ['Can I use my own symbols in Loremapper?', 'Yes. Import PNG, WebP or SVG files into the asset library and place them like the built-in icons.'],
+  ]}
+/>

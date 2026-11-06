@@ -1,6 +1,6 @@
 ---
 import Base from './Base.astro';
-import { EDITOR, ROUTES, SITE, UI, type Lang, type PageId } from '../i18n';
+import { EDITOR, routeIn, SITE, UI, type Lang, type PageId } from '../i18n';
 
 interface Props {
   lang: Lang;
@@ -10,22 +10,22 @@ interface Props {
   h1: string;
   /** The page's name in the breadcrumbs. */
   crumb: string;
+  /** The section it is in (between home and it in the breadcrumbs). */
+  parent?: { page: PageId; name: string };
   /** Written as an article (a guide), with dates. */
   article?: { published: string; modified: string };
   schema?: object[];
 }
 
-const { lang, page, title, description, h1, crumb, article, schema = [] } = Astro.props;
+const { lang, page, title, description, h1, crumb, parent, article, schema = [] } = Astro.props;
 const ui = UI[lang];
-const url = SITE + ROUTES[page][lang];
+const url = SITE + routeIn(page, lang);
+const trail = [{ name: ui.home, href: routeIn('home', lang) }, ...(parent ? [{ name: parent.name, href: routeIn(parent.page, lang) }] : [])];
 const all: object[] = [
   {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: ui.home, item: SITE + ROUTES.home[lang] },
-      { '@type': 'ListItem', position: 2, name: crumb, item: url },
-    ],
+    itemListElement: [...trail.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: SITE + c.href })), { '@type': 'ListItem', position: trail.length + 1, name: crumb, item: url }],
   },
   ...(article
     ? [
@@ -50,7 +50,7 @@ const all: object[] = [
 
 <Base lang={lang} page={page} title={title} description={description} schema={all}>
   <nav class="crumbs" aria-label={lang === 'en' ? 'Breadcrumbs' : 'Навигация'}>
-    <a href={ROUTES.home[lang]}>{ui.home}</a> › <span>{crumb}</span>
+    {trail.map((c) => <><a href={c.href}>{c.name}</a> › </>)}<span>{crumb}</span>
   </nav>
   <article class="prose">
     <h1>{h1}</h1>

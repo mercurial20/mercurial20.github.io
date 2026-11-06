@@ -1,0 +1,62 @@
+---
+import { Image } from 'astro:assets';
+import Article from '../../layouts/Article.astro';
+import { IMG } from '../../images';
+import { howTo } from '../../howto';
+import { EDITOR, routeIn } from '../../i18n';
+
+const steps = [
+  { name: 'Open your campaign map', text: 'Open the editor with the map of your setting, or generate one. Place the towns, roads and places the story needs first: fog hides them from the players, not from you.' },
+  { name: 'Choose the Fog of war tool', text: 'Press X, or pick Fog of war in the toolbar. The brush has two modes: Hide paints fog over land, Reveal clears it.' },
+  { name: 'Cover the whole map', text: 'Press Cover entire map to hide everything at once, then switch the brush to Reveal.' },
+  { name: 'Reveal what the party knows', text: 'Paint with Reveal over the places the characters have seen. Opacity sets how dense the fog is: at 50% the players see the land through a haze. Hold Shift or Alt to switch between hiding and revealing while you paint.' },
+  { name: 'Check what the players will see', text: 'The top bar switches between See through fog (for you, while editing) and Player view (the map as the players will see it).' },
+  { name: 'Export the player map', text: 'Open Export → Map image, set Fog of war to Revealed areas only (player map), choose the area and width, and press Export PNG. Export once more with Complete map for yourself.' },
+  { name: 'Reveal more after each session', text: 'As the party travels, reveal more with the brush and export a new player map. The map is saved in your browser; a project file (Export → Editable project) keeps a full backup.' },
+];
+const title = 'How to Make a D&D Player Map with Fog of War (Free) | Loremapper';
+const description = 'Step by step: hide unexplored lands under fog of war, reveal what the party has seen, and export a player-safe map image for D&D, Pathfinder or any tabletop RPG — free, in the browser.';
+---
+
+<Article
+  lang="en"
+  page="tutFog"
+  title={title}
+  description={description}
+  h1="How to make a player map with fog of war"
+  crumb="Player map with fog of war"
+  parent={{ page: 'guides', name: 'Guides' }}
+  article={{ published: '2026-11-06', modified: '2026-11-06' }}
+  schema={[howTo({ name: 'How to make a player map with fog of war in Loremapper', description, url: routeIn('tutFog', 'en'), steps, minutes: 10, lang: 'en' })]}
+>
+  <p class="lead">
+    A player map shows only what the characters know. In Loremapper you paint fog of war over the rest, keep seeing through it yourself, and export a
+    version for the table, a virtual tabletop or a campaign wiki.
+  </p>
+  <figure>
+    <Image class="shot" src={IMG.fog} alt="A fantasy map in Loremapper: the game master's view through the fog, and the player view with unexplored land hidden" width={1200} widths={[760, 1200]} sizes="(max-width: 860px) 100vw, 760px" />
+    <figcaption>Left: you see through the fog. Right: what the players get.</figcaption>
+  </figure>
+
+  <h2>Steps</h2>
+  <ol class="steps">
+    {steps.map((s, i) => (
+      <li id={`step-${i + 1}`}>
+        <b>{s.name}.</b> {s.text}
+      </li>
+    ))}
+  </ol>
+
+  <h2>Good to know</h2>
+  <ul>
+    <li>Fog is only on the image you export for players; the map itself keeps everything.</li>
+    <li>Exports go up to 12,288 px wide — enough to print or zoom in on a virtual tabletop.</li>
+    <li>Distances are real: the Measure tool (U) tells how far the next town is.</li>
+  </ul>
+
+  <h2>Next</h2>
+  <p>
+    See <a href={routeIn('dnd', 'en')}>Loremapper for D&amp;D campaigns</a>, <a href={routeIn('tutContinent', 'en')}>generate a continent</a> to play on, or
+    <a href={EDITOR}>open the editor</a>.
+  </p>
+</Article>

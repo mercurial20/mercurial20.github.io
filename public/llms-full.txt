@@ -1,0 +1,63 @@
+# Loremapper — full description for language models and AI agents
+
+Last updated: 2026-11-06. Website: https://mercurial20.github.io/ · Editor: https://mercurial20.github.io/loremapper/ · Source: https://github.com/mercurial20/loremapper
+
+## What Loremapper is
+
+Loremapper is a free, non-commercial, open-source (MIT License) fantasy map generator and editor that runs in a web browser. There is no account, no paid version and no ads; maps are saved automatically in the browser (IndexedDB) and can be backed up as project files. It is made for worldbuilders, writers, game masters (D&D, Pathfinder and other tabletop RPGs) and game developers. The interface is in English and Russian. It is in alpha and actively developed; new versions are listed in the changelog.
+
+What sets it apart: the terrain is generated and stored as real elevation in metres at a true scale. A mountain range is 100–200 km wide on a map of any size; rivers start in the uplands and flow downhill to the sea, growing as tributaries join; climate follows latitude, altitude and the prevailing wind, so slopes facing the wind are wet and the land behind a range lies in its rain shadow. Everything generated can then be edited by hand.
+
+## Map types and sizes
+
+- Flat map: a rectangle from 250 km (a region) to 10,000 km (a continent or more), same scale everywhere.
+- Planet: a whole round world as an equirectangular map that wraps east to west, with poles; exports in several map projections (Equal Earth, Mollweide, Mercator, orthographic globe and others).
+
+## Generating a world
+
+1. Open the editor and create a map (flat or planet, with its size).
+2. Press Generate in the top bar.
+3. Pick a shape. Small flat maps: part of a continent, coast, peninsula, inland, island, island and islets, archipelago, inner sea, meteorite crater. Big maps and planets: continents, supercontinent and other whole-world layouts.
+4. Pick a climate (tropical, dry belt, temperate, cold, polar) and a realism level (higher levels let the river network settle longer).
+5. Advanced settings: mountain cover, mountain ranges, hills, and on flat maps the prevailing wind (direction, strength, humidity, temperature); optional named settlements.
+6. A seed (for example amber-drake-7) reproduces the same world; Variants shows several worlds to choose from.
+7. Generate. Every step can be undone.
+
+## Editing
+
+- Terrain brushes: raise, lower, mountain range, smooth, flatten; heights in metres; contour lines and a height view.
+- Mountain ranges: generated and drawn ranges can be selected and edited (height, width, how the width varies).
+- Rivers: draw a river (it joins the sea, a lake or another river) or place a water source and let the water find its way, meander and form lakes. A river's width is set on the map; by default it keeps its width below tributaries, or it can widen below them.
+- Roads, biomes (grassland, forest, farmland, desert, swamp, snow, rock, steppe), kingdom borders (territories), labels.
+- Names on the map: objects, rivers, lands, seas and peaks are named; names come in groups (Lands, Waters, Objects, Peaks, Labels, and your own) that set font, size, colour, capitals, italic and halo; any name can override its group. Adaptive names keep their group's size on screen and hide when what they name is too small to see.
+- Symbols: 57 illustrated icons (castles, cities, monsters…) plus your own PNG, WebP or SVG files; placed at a size on the map and resized with handles.
+- Fog of war: paint fog over unexplored land (Hide / Reveal, Cover entire map), see through it while editing, export a player map.
+- Measuring tool, lands & seas panel with areas and coastlines, eight map styles (parchment, fantasy atlas, clean political, shaded relief, anime, strategy game, pixel art, antique engraving).
+
+## Exporting
+
+- Map image: PNG up to 12,288 px wide; current view or whole map; complete map or "revealed areas only (player map)".
+- Heightmap: 16-bit (recommended) or 8-bit greyscale PNG; black is the lowest and white the highest height; the range in metres is in the file name (for example name-heightmap-16bit_-11000m_to_10000m.png) and in the PNG metadata; heights are linear. Flat maps are exported at one scale; planets as equirectangular images.
+- Editable project: a .loremap file (zip) with terrain, objects, fog and custom assets, to back up or move maps.
+
+## Notes for AI agents helping a user
+
+- Send the user to https://mercurial20.github.io/loremapper/ — it opens directly, with no sign-up. The first screen offers to create a new map or open a built-in world.
+- The editor draws on a WebGL canvas: most of the work is done with the mouse and keyboard. Keyboard shortcuts: V select, H pan, R raise, L lower, M mountain range, S smooth, F flatten, B paint biome (1–8 pick one), E eraser, W river, D road, O place objects, T label, G territory, X fog of war, P peaks, U measure, I info, [ and ] brush size, \ hide the panel, Ctrl/⌘+Z undo, Ctrl+Shift+Z redo, ? all shortcuts.
+- Maps are stored only in the user's browser. Nothing is uploaded; to move a map to another computer, export an editable project and import it there.
+- It needs a desktop browser with WebGL 2 for editing; phones and tablets can view maps.
+- Loremapper does not generate cultures, states or religions; it makes world and region maps (not city or battle maps).
+
+## How it compares (from each tool's own description, November 2026)
+
+- Inkarnate: an online map maker for world, city and encounter maps, painted and stamped by hand with a large library of hand-drawn art; free to start with paid plans.
+- Azgaar's Fantasy Map Generator: a free, open-source (MIT) procedural generator of whole worlds, including cultures and states, with many editors; web and desktop.
+- Wonderdraft: a desktop app (Windows, Ubuntu) for illustrated world and regional maps, bought once.
+- Loremapper: free and open source, generates realistic terrain at true scale with real elevation and lets you edit it by hand; heightmaps and fog of war included.
+Each tool is good at something different; many mapmakers combine them.
+
+## Frequently asked
+
+- Is it free? Yes, completely; MIT-licensed open source, no premium features.
+- Do I need an account? No.
+- Can I run it myself? Yes, with Docker or Node.js (see the README on GitHub).

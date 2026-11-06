@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import Article from '../../layouts/Article.astro';
+import { IMG } from '../../images';
+import { howTo } from '../../howto';
+import { EDITOR, routeIn } from '../../i18n';
+
+const steps = [
+  { name: 'Create a map of the right size', text: 'Open the editor and make a new map: a flat map from 250 km (a region) to 10,000 km (a continent or more), or a whole planet. The size is real: a mountain range will be 100–200 km wide on any map.' },
+  { name: 'Open Generate and pick a shape', text: 'Press Generate in the top bar. Small flat maps offer shapes such as Part of a continent, Coast, Peninsula, Inland, Island, Island and islets, Archipelago, Inner sea or Meteorite crater; big maps and planets offer whole-world layouts such as Continents or Supercontinent.' },
+  { name: 'Choose the climate and realism', text: 'Pick a climate from Tropical to Polar. Realism (Easy to Ultra) sets how long the river network is allowed to settle: higher levels give longer rivers and cleaner valleys and take a few seconds more.' },
+  { name: 'Fine-tune in Advanced settings', text: 'Open Advanced settings to set how much of the land mountains and ranges cover, how hilly the land between them is, and on flat maps the prevailing wind: where it blows from, how strong, moist and warm it is. Slopes facing the wind are wet; the land behind a range lies in its rain shadow.' },
+  { name: 'Use a seed, or try variants', text: 'A seed such as amber-drake-7 always gives the same world with the same settings. Press the dice for a new one, or Variants to see several worlds side by side and pick one.' },
+  { name: 'Generate, then make it yours', text: 'Press Generate. Anything can be undone. Then edit: drag the generated mountain ranges, raise or lower land with brushes, add rivers, paint biomes, and name lands and seas in the Lands & seas panel (Write name on map puts the name on the map).' },
+];
+const title = 'How to Generate a Fantasy Continent from a Seed (Free) | Loremapper';
+const description = 'Step by step: generate a believable fantasy continent, island or planet in Loremapper — size, shape, climate, wind, seed and variants — then edit it by hand. Free, in the browser.';
+---
+
+<Article
+  lang="en"
+  page="tutContinent"
+  title={title}
+  description={description}
+  h1="How to generate a fantasy continent"
+  crumb="Generate a continent"
+  parent={{ page: 'guides', name: 'Guides' }}
+  article={{ published: '2026-11-06', modified: '2026-11-06' }}
+  schema={[howTo({ name: 'How to generate a fantasy continent in Loremapper', description, url: routeIn('tutContinent', 'en'), steps, minutes: 5, lang: 'en' })]}
+>
+  <p class="lead">
+    Loremapper's generator builds a continent the way land forms: mountain ranges in belts, rivers that drain real basins to the sea, climate that follows
+    the wind. This guide takes about five minutes and needs no account.
+  </p>
+  <figure>
+    <Image class="shot" src={IMG.generate} alt="The Generate world dialog in Loremapper with land shapes, climate and realism settings" width={1200} widths={[760, 1200]} sizes="(max-width: 860px) 100vw, 760px" />
+    <figcaption>The Generate world dialog: shape, climate, realism, seed.</figcaption>
+  </figure>
+
+  <h2>Steps</h2>
+  <ol class="steps">
+    {steps.map((s, i) => (
+      <li id={`step-${i + 1}`}>
+        <b>{s.name}.</b> {s.text}
+      </li>
+    ))}
+  </ol>
+
+  <h2>Tips for a believable result</h2>
+  <ul>
+    <li>Match the size to the story: a kingdom is a few hundred kilometres across; a continent several thousand.</li>
+    <li>Keep the default middle settings first — they are Earth-like — and change one thing at a time.</li>
+    <li>Check the relief in the height view (Height in the top bar): every point has an elevation in metres.</li>
+    <li>For a planet, the map wraps around east to west; for a region, the land runs on past the edges like part of a bigger continent.</li>
+  </ul>
+  <figure>
+    <Image class="shot" src={IMG.elevation} alt="A generated continent in Loremapper in the height view, with shaded relief" width={1200} widths={[760, 1200]} sizes="(max-width: 860px) 100vw, 760px" loading="lazy" />
+  </figure>
+
+  <h2>Next</h2>
+  <p>
+    Read <a href={routeIn('guide', 'en')}>how to make a fantasy map</a> for the design side, make a <a href={routeIn('tutFog', 'en')}>player map with fog of war</a>,
+    or <a href={routeIn('tutHeightmap', 'en')}>export a heightmap</a> for a game engine. Or just <a href={EDITOR}>open the editor</a>.
+  </p>
+</Article>

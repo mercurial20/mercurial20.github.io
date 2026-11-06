@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import Article from '../../layouts/Article.astro';
+import { IMG } from '../../images';
+import { howTo } from '../../howto';
+import { EDITOR, routeIn } from '../../i18n';
+
+const steps = [
+  { name: 'Make or generate the terrain', text: 'Generate a world or sculpt one in the editor. Every point has a real elevation in metres, so the heightmap is real data, not a picture of shading.' },
+  { name: 'Open Export → Heightmap', text: 'Press Export in the top bar and choose Heightmap.' },
+  { name: 'Choose 16-bit', text: 'Pick 16-bit (recommended): 65,536 height steps instead of 256, so slopes have no terraces. 8-bit is for tools that cannot read 16-bit images.' },
+  { name: 'Choose the width', text: 'Pick 1024, 2048 px or the map\'s full width. A flat map is exported top-down at one scale everywhere; a planet as an equirectangular image.' },
+  { name: 'Export and note the height range', text: 'Press Export heightmap. Black is the lowest height and white the highest; the range in metres is in the file name (for example …-heightmap-16bit_-11000m_to_10000m.png) and in the PNG\'s metadata. Heights are linear in between.' },
+  { name: 'Import it into your engine or 3D tool', text: 'Bring the greyscale PNG into the engine\'s terrain importer and set the vertical scale so the full range of the image spans the range in the file name.' },
+];
+const title = 'Export a Fantasy Heightmap for Unreal, Unity, Godot or Blender | Loremapper';
+const description = 'How to export a 16-bit greyscale heightmap of a generated fantasy world from Loremapper and bring it into a game engine or 3D tool, with the height range in metres. Free, in the browser.';
+---
+
+<Article
+  lang="en"
+  page="tutHeightmap"
+  title={title}
+  description={description}
+  h1="How to export a heightmap for game engines"
+  crumb="Heightmap for game engines"
+  parent={{ page: 'guides', name: 'Guides' }}
+  article={{ published: '2026-11-06', modified: '2026-11-06' }}
+  schema={[howTo({ name: 'How to export a heightmap from Loremapper for a game engine', description, url: routeIn('tutHeightmap', 'en'), steps, minutes: 5, lang: 'en' })]}
+>
+  <p class="lead">
+    Loremapper stores real elevations, so a world you generate or sculpt can become terrain in a game engine or a 3D scene. This guide covers the export
+    and what to set when you import it.
+  </p>
+  <figure>
+    <Image class="shot" src={IMG.exportShot} alt="The Export dialog in Loremapper with the map image, heightmap and project options" width={1200} widths={[760, 1200]} sizes="(max-width: 860px) 100vw, 760px" />
+  </figure>
+
+  <h2>Steps</h2>
+  <ol class="steps">
+    {steps.map((s, i) => (
+      <li id={`step-${i + 1}`}>
+        <b>{s.name}.</b> {s.text}
+      </li>
+    ))}
+  </ol>
+
+  <h2>Notes for common tools</h2>
+  <p>Importers change between versions, so check your tool's documentation; these are the usual starting points.</p>
+  <ul>
+    <li><b>Unreal Engine:</b> the Landscape importer reads 16-bit greyscale PNG. Set the Z scale so the image's full range matches the metres in the file name.</li>
+    <li><b>Unity:</b> the built-in terrain imports heightmaps as RAW files; convert the PNG to 16-bit RAW in an image editor first, then set the terrain height to the range.</li>
+    <li><b>Godot:</b> terrain add-ons import greyscale heightmap images; set their height scale to the range.</li>
+    <li><b>Blender:</b> use the PNG as the texture of a Displace modifier (or a displacement node) on a subdivided plane and scale it to the range.</li>
+  </ul>
+  <p>
+    The map's real size tells the horizontal scale: a 2,000 km flat map exported 2,048 px wide is about 1 km per pixel. For the colour map on top, export
+    a map image of the same area and width.
+  </p>
+
+  <h2>Next</h2>
+  <p>
+    <a href={routeIn('tutContinent', 'en')}>Generate a continent</a> to export, or <a href={EDITOR}>open the editor</a>.
+  </p>
+</Article>

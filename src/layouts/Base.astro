@@ -3,7 +3,7 @@ import '@fontsource-variable/cinzel';
 import '@fontsource-variable/eb-garamond';
 import '@fontsource-variable/inter';
 import '../styles/site.css';
-import { EDITOR, GITHUB, REDDIT, ROUTES, SITE, UI, type Lang, type PageId } from '../i18n';
+import { EDITOR, GITHUB, REDDIT, ROUTES, routeIn, SITE, UI, type Lang, type PageId } from '../i18n';
 
 interface Props {
   lang: Lang;
@@ -18,8 +18,11 @@ interface Props {
 const { lang, page, title, description, schema = [], image = `${SITE}/social-preview.jpg` } = Astro.props;
 const ui = UI[lang];
 const other: Lang = lang === 'en' ? 'ru' : 'en';
-const url = SITE + ROUTES[page][lang];
-const navItems = (['generator', 'dnd', 'guide'] as const).map((id) => ({ id, href: ROUTES[id][lang], label: ui.nav[id] }));
+const url = SITE + routeIn(page, lang);
+const navItems = (['generator', 'dnd', 'guides', 'compare'] as const).map((id) => ({ id, href: routeIn(id, lang), label: ui.nav[id] }));
+const ru = ROUTES[page].ru;
+// a page in a section marks that section in the menu
+const section: PageId = page.startsWith('tut') || page === 'guide' ? 'guides' : page.startsWith('vs') ? 'compare' : page;
 ---
 
 <!doctype html>
@@ -31,7 +34,7 @@ const navItems = (['generator', 'dnd', 'guide'] as const).map((id) => ({ id, hre
     <meta name="description" content={description} />
     <link rel="canonical" href={url} />
     <link rel="alternate" hreflang="en" href={SITE + ROUTES[page].en} />
-    <link rel="alternate" hreflang="ru" href={SITE + ROUTES[page].ru} />
+    {ru && <link rel="alternate" hreflang="ru" href={SITE + ru} />}
     <link rel="alternate" hreflang="x-default" href={SITE + ROUTES[page].en} />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#111317" />
@@ -42,7 +45,7 @@ const navItems = (['generator', 'dnd', 'guide'] as const).map((id) => ({ id, hre
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <meta property="og:type" content={page === 'guide' ? 'article' : 'website'} />
+    <meta property="og:type" content={page === 'guide' || page.startsWith('tut') ? 'article' : 'website'} />
     <meta property="og:site_name" content="Loremapper" />
     <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'ru_RU'} />
     <meta property="og:locale:alternate" content={lang === 'en' ? 'ru_RU' : 'en_US'} />
@@ -59,14 +62,14 @@ const navItems = (['generator', 'dnd', 'guide'] as const).map((id) => ({ id, hre
   </head>
   <body class={`lang-${lang}`}>
     <header class="top">
-      <a class="brand" href={ROUTES.home[lang]} aria-label="Loremapper">
+      <a class="brand" href={routeIn('home', lang)} aria-label="Loremapper">
         <img src="/favicon.svg" alt="" width="26" height="26" />
         <span>Loremapper</span>
       </a>
       <nav aria-label={lang === 'en' ? 'Pages' : 'Разделы'}>
-        {navItems.map((n) => <a href={n.href} aria-current={n.id === page ? 'page' : undefined}>{n.label}</a>)}
+        {navItems.map((n) => <a href={n.href} aria-current={n.id === section ? 'page' : undefined}>{n.label}</a>)}
       </nav>
-      <a class="lang" href={ROUTES[page][other]} hreflang={other} lang={other}>{ui.lang}</a>
+      <a class="lang" href={routeIn(page, other)} hreflang={other} lang={other}>{ui.lang}</a>
       <a class="btn primary" href={EDITOR}>{ui.openShort}</a>
     </header>
     <main>
@@ -76,9 +79,11 @@ const navItems = (['generator', 'dnd', 'guide'] as const).map((id) => ({ id, hre
       <p>{ui.footer}</p>
       <p class="links">
         <a href={EDITOR}>{ui.open}</a>
+        <a href={routeIn('guides', lang)}>{ui.nav.guides}</a>
+        <a href={routeIn('compare', lang)}>{ui.nav.compare}</a>
         <a href={GITHUB}>{ui.source}</a>
         <a href={REDDIT}>{ui.community}: r/LoreMapper</a>
-        <a href={ROUTES[page][other]} hreflang={other} lang={other}>{ui.lang}</a>
+        <a href={routeIn(page, other)} hreflang={other} lang={other}>{ui.lang}</a>
       </p>
     </footer>
   </body>

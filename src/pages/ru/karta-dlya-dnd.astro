@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Article from '../../layouts/Article.astro';
 import { IMG } from '../../images';
-import { ROUTES } from '../../i18n';
+import { ROUTES, routeIn } from '../../i18n';
 ---
 
 <Article
@@ -52,7 +52,7 @@ import { ROUTES } from '../../i18n';
   <h2>Бесплатно, и карты остаются вашими</h2>
   <p>
     Ни регистрации, ни подписки. Карты сохраняются в вашем браузере, а файл проекта — полная резервная копия, которую можно перенести на другой
-    компьютер. Впервые делаете карту? Прочитайте <a href={ROUTES.guide.ru}>как сделать фэнтези-карту</a> или узнайте о
-    <a href={ROUTES.generator.ru}>генераторе миров</a>.
+    компьютер. Впервые делаете карту? Прочитайте <a href={routeIn('guide', 'ru')}>как сделать фэнтези-карту</a> или узнайте о
+    <a href={routeIn('generator', 'ru')}>генераторе миров</a>.
   </p>
 </Article>

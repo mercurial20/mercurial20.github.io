@@ -1,0 +1,33 @@
+---
+import Article from '../../layouts/Article.astro';
+import { EDITOR, routeIn } from '../../i18n';
+
+const guides = [
+  { id: 'tutContinent', name: 'Generate a fantasy continent', text: 'Size, shape, climate, wind, seed and variants — a believable continent in minutes.' },
+  { id: 'tutFog', name: 'Make a player map with fog of war', text: 'Hide what the party has not seen and export a player-safe map for D&D or any RPG.' },
+  { id: 'tutHeightmap', name: 'Export a heightmap for game engines', text: '16-bit greyscale terrain with its height range, for Unreal, Unity, Godot or Blender.' },
+  { id: 'guide', name: 'How to make a fantasy map', text: 'Seven steps to a map that feels real: scale, coasts, mountains, rivers, climate, towns, names.' },
+] as const;
+---
+
+<Article
+  lang="en"
+  page="guides"
+  title="Fantasy Map Guides and Tutorials | Loremapper"
+  description="Free step-by-step guides for making fantasy maps with Loremapper: generate a continent, make a D&D player map with fog of war, export a heightmap for a game engine, and design a believable world."
+  h1="Guides"
+  crumb="Guides"
+>
+  <p class="lead">Step-by-step guides for making fantasy maps with Loremapper. Each takes a few minutes, and the editor is free with no account.</p>
+  <div class="links-grid">
+    {
+      guides.map((g) => (
+        <a class="link-card" href={routeIn(g.id, 'en')}>
+          <h3>{g.name}</h3>
+          <p>{g.text}</p>
+        </a>
+      ))
+    }
+  </div>
+  <p>Ready? <a href={EDITOR}>Open the editor</a>.</p>
+</Article>

@@ -1,0 +1,76 @@
+---
+import Article from '../layouts/Article.astro';
+import CompareTable from './CompareTable.astro';
+import Fairness from './Fairness.astro';
+import { CHECKED, tool, type Tool } from '../compare';
+import { EDITOR, routeIn, SITE, type PageId } from '../i18n';
+
+interface Props {
+  page: PageId;
+  id: Tool['id'];
+  title: string;
+  description: string;
+  lead: string;
+  /** What the other tool does well, in its own terms. */
+  strengths: string[];
+  /** How Loremapper differs. */
+  differs: string[];
+  pickThem: string;
+  pickUs: string;
+  together: string;
+  faq: [string, string][];
+}
+const p = Astro.props;
+const t = tool(p.id);
+const schema = [
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: p.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: p.title,
+    url: SITE + routeIn(p.page, 'en'),
+    dateModified: CHECKED,
+    about: [{ '@type': 'SoftwareApplication', name: 'Loremapper', url: EDITOR, applicationCategory: 'DesignApplication' }, { '@type': 'SoftwareApplication', name: t.name, url: t.site }],
+  },
+];
+---
+
+<Article lang="en" page={p.page} title={p.title} description={p.description} h1={`Loremapper and ${t.name}: how they differ`} crumb={t.name} parent={{ page: 'compare', name: 'Compare' }} schema={schema}>
+  <p class="lead">{p.lead}</p>
+  <CompareTable lang="en" tools={[t]} />
+
+  <h2>What {t.name} does well</h2>
+  <ul>{p.strengths.map((s) => <li>{s}</li>)}</ul>
+
+  <h2>How Loremapper differs</h2>
+  <ul>{p.differs.map((s) => <li>{s}</li>)}</ul>
+
+  <h2>Which to choose</h2>
+  <div class="pick">
+    <div>
+      <h3>{t.name} may suit you if…</h3>
+      <p>{p.pickThem}</p>
+    </div>
+    <div>
+      <h3>Loremapper may suit you if…</h3>
+      <p>{p.pickUs}</p>
+    </div>
+  </div>
+
+  <h2>Using both</h2>
+  <p>{p.together}</p>
+
+  <h2>Questions</h2>
+  {
+    p.faq.map(([q, a]) => (
+      <details>
+        <summary>{q}</summary>
+        <p>{a}</p>
+      </details>
+    ))
+  }
+  <p>
+    See also: <a href={routeIn('compare', 'en')}>all comparisons</a> · <a href={routeIn('guides', 'en')}>guides</a> · <a href={EDITOR}>open Loremapper</a>
+  </p>
+  <Fairness lang="en" />
+</Article>

@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Article from '../layouts/Article.astro';
 import { IMG } from '../images';
-import { ROUTES } from '../i18n';
+import { ROUTES, routeIn } from '../i18n';
 ---
 
 <Article
@@ -58,7 +58,7 @@ import { ROUTES } from '../i18n';
   <h2>Then make it yours</h2>
   <p>
     A generated world is a starting point. Raise or lower land with brushes, edit the generated mountain ranges, draw rivers and roads, paint biomes,
-    draw kingdom borders, and name places. See <a href={ROUTES.guide.en}>how to make a fantasy map</a> step by step, or
-    <a href={ROUTES.dnd.en}>how game masters use it for D&amp;D</a>.
+    draw kingdom borders, and name places. See <a href={routeIn('guide', 'en')}>how to make a fantasy map</a> step by step, or
+    <a href={routeIn('dnd', 'en')}>how game masters use it for D&amp;D</a>.
   </p>
 </Article>

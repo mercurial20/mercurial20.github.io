@@ -1,0 +1,34 @@
+---
+import { LOREMAPPER, ROW_NAMES, type RowKey, type Tool } from '../compare';
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  tools: Tool[];
+}
+const { lang, tools } = Astro.props;
+const keys = Object.keys(ROW_NAMES) as RowKey[];
+---
+
+<div class="table-wrap">
+  <table class="compare">
+    <thead>
+      <tr>
+        <th></th>
+        <th scope="col">Loremapper</th>
+        {tools.map((t) => <th scope="col"><a href={t.site} rel="nofollow noopener" target="_blank">{t.name}</a></th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {
+        keys.map((k) => (
+          <tr>
+            <th scope="row">{ROW_NAMES[k][lang]}</th>
+            <td>{LOREMAPPER[lang][k]}</td>
+            {tools.map((t) => <td>{t.rows[lang][k]}</td>)}
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,29 @@
+---
+import { CHECKED_TEXT } from '../compare';
+import { GITHUB, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+---
+
+<aside class="fair">
+  {
+    lang === 'en' ? (
+      <p>
+        <b>About this comparison.</b> It describes each tool from what it says about itself on its own website, checked in {CHECKED_TEXT.en}. Plans,
+        prices and features change: see each tool's site for what is current. All product names are trademarks of their respective owners; Loremapper is
+        not affiliated with or endorsed by them. Every tool here is made with care and loved by its users — this page is meant to help you choose, not
+        to rank them. Something out of date or unfair? <a href={`${GITHUB}/issues`}>Tell us</a> and we will fix it.
+      </p>
+    ) : (
+      <p>
+        <b>Об этом сравнении.</b> Каждый инструмент описан по тому, что он сам пишет о себе на своём сайте (проверено: {CHECKED_TEXT.ru}). Планы, цены и
+        возможности меняются — актуальное смотрите на их сайтах. Названия продуктов — товарные знаки их владельцев; Loremapper с ними не связан и ими не
+        одобрен. Каждый из этих инструментов сделан с заботой и любим своими пользователями — эта страница помогает выбрать, а не ставит оценки. Что-то
+        устарело или несправедливо? <a href={`${GITHUB}/issues`}>Напишите нам</a>, исправим.
+      </p>
+    )
+  }
+</aside>

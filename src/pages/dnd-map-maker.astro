@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Article from '../layouts/Article.astro';
 import { IMG } from '../images';
-import { ROUTES } from '../i18n';
+import { ROUTES, routeIn } from '../i18n';
 ---
 
 <Article
@@ -52,6 +52,6 @@ import { ROUTES } from '../i18n';
   <h2>Free, and your maps stay yours</h2>
   <p>
     There is no account and no subscription. Maps are saved in your browser, and a project file keeps a full backup you can move to another computer.
-    New to map making? Read <a href={ROUTES.guide.en}>how to make a fantasy map</a>, or learn about the <a href={ROUTES.generator.en}>world generator</a>.
+    New to map making? Read <a href={routeIn('guide', 'en')}>how to make a fantasy map</a>, or learn about the <a href={routeIn('generator', 'en')}>world generator</a>.
   </p>
 </Article>

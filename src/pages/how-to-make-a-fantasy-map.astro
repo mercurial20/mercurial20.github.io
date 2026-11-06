@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Article from '../layouts/Article.astro';
 import { IMG } from '../images';
-import { EDITOR, ROUTES } from '../i18n';
+import { EDITOR, ROUTES, routeIn } from '../i18n';
 ---
 
 <Article
@@ -73,7 +73,7 @@ import { EDITOR, ROUTES } from '../i18n';
 
   <h2>Start now</h2>
   <p>
-    Open the <a href={EDITOR}>editor</a>, or read more about the <a href={ROUTES.generator.en}>fantasy map generator</a> and
-    <a href={ROUTES.dnd.en}>maps for D&amp;D campaigns</a>.
+    Open the <a href={EDITOR}>editor</a>, or read more about the <a href={routeIn('generator', 'en')}>fantasy map generator</a> and
+    <a href={routeIn('dnd', 'en')}>maps for D&amp;D campaigns</a>.
   </p>
 </Article>

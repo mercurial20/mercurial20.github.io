@@ -1,24 +1,33 @@
 # Loremapper
 
-> Loremapper is a free, open-source fantasy map generator and editor that runs in the browser. It generates continents, islands or whole planets with believable terrain at true scale (real elevation in metres, mountain ranges, rivers that flow downhill, climate and biomes), and lets you edit everything by hand: sculpt terrain, draw rivers, roads and kingdom borders, place cities and your own artwork, name places, and add fog of war for tabletop RPGs such as D&D. No account; maps are saved in the browser. MIT License, non-commercial, available in English and Russian.
+> Loremapper is a free, open-source (MIT) fantasy map generator and editor that runs in the browser, with no account. It generates continents, islands or whole planets with believable terrain at true scale — real elevation in metres, mountain ranges, rivers that flow downhill, climate and biomes — and lets you edit everything by hand: sculpt terrain, edit mountain ranges, draw rivers, roads and kingdom borders, place cities and your own artwork, style names in groups, and add fog of war for tabletop RPGs such as D&D. Maps are saved in the browser. Available in English and Russian. Status: alpha, actively developed.
 
-Key facts:
 - Editor: https://mercurial20.github.io/loremapper/ (free, no sign-up, nothing to install)
-- Map types: a whole planet that wraps around, or a flat map from 250 km to 10,000 km across
-- Generation from a seed: continents, supercontinent, archipelagos, coast, peninsula, island, inner sea, meteorite crater; climate from tropical to polar; prevailing wind on flat maps; optional named settlements
-- Editing: terrain brushes with elevation in metres, editable mountain ranges, rivers, roads, biomes, kingdom borders, labels and name styles in groups, 57 illustrated icons plus custom PNG/WebP/SVG assets, measuring tool, fog of war
+- Source code: https://github.com/mercurial20/loremapper (MIT License)
+- Full text for language models: https://mercurial20.github.io/llms-full.txt
+
+## Key facts
+
+- Map types: a whole planet that wraps around, or a flat map from 250 km to 10,000 km across, generated at its true scale
+- Generation from a seed: shapes such as part of a continent, coast, peninsula, island, archipelago, inner sea, meteorite crater, continents, supercontinent; climate from tropical to polar; prevailing wind on flat maps; optional named settlements; several variants side by side
+- Editing: terrain brushes with elevation in metres, editable mountain ranges, rivers (drawn, or flowing from a source), roads, biomes, kingdom borders, labels and name styles in groups (adaptive size), 57 illustrated icons plus custom PNG/WebP/SVG assets, measuring tool, fog of war
 - Export: PNG up to 12,288 px (complete map or player map with fog of war), map projections for planets, 16-bit heightmaps for game engines, editable project files
-- Status: alpha, actively developed; source code at https://github.com/mercurial20/loremapper
+
+## Guides
+
+- [Generate a fantasy continent](https://mercurial20.github.io/guides/generate-a-fantasy-continent/): step by step, from map size to seed and variants
+- [Player map with fog of war](https://mercurial20.github.io/guides/player-map-with-fog-of-war/): hide unexplored land and export a player-safe map for D&D
+- [Heightmap for game engines](https://mercurial20.github.io/guides/heightmap-for-game-engines/): 16-bit export and import into Unreal, Unity, Godot or Blender
+- [How to make a fantasy map](https://mercurial20.github.io/how-to-make-a-fantasy-map/): seven design steps to a believable map
 
 ## Pages
 
 - [Fantasy map generator](https://mercurial20.github.io/fantasy-map-generator/): what the generator makes and why its maps look believable
 - [D&D map maker](https://mercurial20.github.io/dnd-map-maker/): fog of war, player maps, kingdoms and distances for game masters
-- [How to make a fantasy map](https://mercurial20.github.io/how-to-make-a-fantasy-map/): a seven-step guide to a believable map
-- [Русская версия](https://mercurial20.github.io/ru/): the same pages in Russian
+- [Fantasy map makers compared](https://mercurial20.github.io/alternatives/): Loremapper alongside Inkarnate, Azgaar's Fantasy Map Generator and Wonderdraft, from each tool's own description
+- [Русская версия](https://mercurial20.github.io/ru/): the main pages and guides in Russian
 
 ## Optional
 
-- [Source code and documentation](https://github.com/mercurial20/loremapper)
 - [Changelog](https://github.com/mercurial20/loremapper/blob/main/CHANGELOG.md)
 - [Community: r/LoreMapper](https://www.reddit.com/r/LoreMapper/)

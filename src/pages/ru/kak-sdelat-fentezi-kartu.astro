@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Article from '../../layouts/Article.astro';
 import { IMG } from '../../images';
-import { EDITOR, ROUTES } from '../../i18n';
+import { EDITOR, ROUTES, routeIn } from '../../i18n';
 ---
 
 <Article
@@ -73,7 +73,7 @@ import { EDITOR, ROUTES } from '../../i18n';
 
   <h2>Начните сейчас</h2>
   <p>
-    Откройте <a href={EDITOR}>редактор</a> или прочитайте подробнее о <a href={ROUTES.generator.ru}>генераторе фэнтези-карт</a> и
-    <a href={ROUTES.dnd.ru}>картах для кампаний D&amp;D</a>.
+    Откройте <a href={EDITOR}>редактор</a> или прочитайте подробнее о <a href={routeIn('generator', 'ru')}>генераторе фэнтези-карт</a> и
+    <a href={routeIn('dnd', 'ru')}>картах для кампаний D&amp;D</a>.
   </p>
 </Article>
